@@ -53,3 +53,4 @@ Thumbs.db
 /data
 constrainednmf/example_scripts/example_output/
 */tmp/
+*.egg-info/
