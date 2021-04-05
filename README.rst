@@ -20,8 +20,8 @@ Installation guide
 
 Install from github::
 
-    $ python3 -m venv bs_env
-    $ source bs_env/bin/activate
+    $ python3 -m venv nmf_env
+    $ source nmf_env/bin/activate
     $ git clone https://github.com/bnl/pub-Maffettone_2021_04
     $ cd pub-Maffettone_2021_04
     $ python -m pip install --upgrade pip wheel
