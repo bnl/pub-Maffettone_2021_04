@@ -25,7 +25,7 @@ Install from github::
     $ git clone https://github.com/bnl/pub-Maffettone_2021_04
     $ cd pub-Maffettone_2021_04
     $ python -m pip install --upgrade pip wheel
-    $ python -m pip install .
+    $ python -m pip install -e .
 
 
 Recreating the published results
