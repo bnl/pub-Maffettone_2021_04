@@ -39,7 +39,7 @@ with open(path.join(here, "requirements.txt")) as requirements_file:
 
 
 setup(
-    name="pub-maffettone_2021_04",
+    name="constrained_nmf",
     version=versioneer.get_version(),
     cmdclass=versioneer.get_cmdclass(),
     description="Python replication of https://arxiv.org/abs/2104.00864",
@@ -56,7 +56,7 @@ setup(
     },
     include_package_data=True,
     package_data={
-        "pub_maffettone_2021_04": [
+        "constrained_nmf": [
             # When adding files here, remember to update MANIFEST.in as well,
             # or else they will not be included in the distribution on PyPI!
             # 'path/to/data_file',
