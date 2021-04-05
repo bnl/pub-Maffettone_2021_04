@@ -23,7 +23,7 @@ Install from github::
     $ python3 -m venv bs_env
     $ source bs_env/bin/activate
     $ git clone https://github.com/bnl/pub-Maffettone_2021_04
-    $ cd pub-Maffettone_2021_02
+    $ cd pub-Maffettone_2021_04
     $ python -m pip install --upgrade pip wheel
     $ python -m pip install .
 
@@ -33,7 +33,7 @@ Recreating the published results
 All figures presented in the paper and the supplementary information can be recreated by running the files in
 `example_scripts` using `python -m`. For example ::
 
-    $ python -m example_scripts/fixing_weights.py
+    $ python -m example_scripts/simulation_constraining_weights.py
 
 Will yield a simulated dataset of mixing Gaussians and the results from canonical NMF as well as constrained NMF where the
 weights have been constrained.
