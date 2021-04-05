@@ -33,7 +33,7 @@ Recreating the published results
 All figures presented in the paper and the supplementary information can be recreated by running the files in
 `example_scripts` using `python -m`. For example ::
 
-    $ python -m example_scripts/simulation_constraining_weights.py
+    $ python -m constrainednmf/example_scripts/simulation_constraining_weights.py
 
 Will yield a simulated dataset of mixing Gaussians and the results from canonical NMF as well as constrained NMF where the
 weights have been constrained.
