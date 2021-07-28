@@ -33,6 +33,8 @@ def standard_nmf(X):
 
 
 def plot_adjustments(axes, norm=True):
+    axes[0].set_xlabel(r"2$\theta$ [deg]")
+    axes[0].set_xlim(0, 25)
     for ax in axes[1:]:
         ax.axvline(185, linestyle="--", color="k")
         ax.axvline(280, linestyle="--", color="k")
@@ -61,20 +63,21 @@ def make_plots():
     from constrainednmf.nmf.metrics import Euclidean, r_factor
 
     T, X = get_data()
+    tth = np.linspace(0.011231808788013649, 24.853167100343246, 3488)
     figs = list()
     axes = list()
     fig, ax = sweep_components(X, n_max=8)
     figs.append(fig),
     axes.append(ax)
     nmf = standard_nmf(X)
-    fig, ax = decomp_plot(nmf, T)
+    fig, ax = decomp_plot(nmf, T, x=tth)
     plot_adjustments(ax, norm=False)
     figs.append(fig)
     axes.append(ax)
     print(f"Standard MSE={Euclidean(nmf.reconstruct(nmf.H, nmf.W), X)}")
     print(f"Standard R-factor={r_factor(nmf.reconstruct(nmf.H, nmf.W), X)}")
     for nmf in iterative_nmf(NMF, X, n_components=4, beta=2, tol=1e-8, max_iter=1000):
-        fig, ax = decomp_plot(nmf, T)
+        fig, ax = decomp_plot(nmf, T, x=tth)
         plot_adjustments(ax)
         figs.append(fig)
         axes.append(ax)

@@ -25,7 +25,7 @@ def get_data(data_dir=None):
         T.append(float(str(path.name).split("_")[-2][1:-1]) + 273.0)
     X = torch.tensor(np.concatenate(profiles, axis=0), dtype=torch.float)
     T = np.array(T)
-    return T, X
+    return T, X, x[mask]
 
 
 def get_pdf_data(data_dir=None):
@@ -84,16 +84,17 @@ def make_plots(n_components=4, function="XRD"):
     from constrainednmf.nmf.metrics import Euclidean, r_factor
 
     if function.upper() == "XRD":
-        T, X = get_data()
+        T, X, q = get_data()
     elif function.upper() == "PDF":
         T, X = get_pdf_data()
+        q = None
     figs = dict()
     axes = list()
     fig, ax = sweep_components(X, n_max=10)
     figs["elbow"] = fig
     axes.append(ax)
     nmf = standard_nmf(X, n_components)
-    fig, ax = decomp_plot(nmf, T)
+    fig, ax = decomp_plot(nmf, T, x=q)
     plot_adjustments(ax)
     figs["conventional"] = fig
     axes.append(ax)
@@ -108,7 +109,7 @@ def make_plots(n_components=4, function="XRD"):
             NMF, X, n_components=n_components, beta=2, tol=1e-8, max_iter=1000
         )
     ):
-        fig, ax = decomp_plot(nmf, T)
+        fig, ax = decomp_plot(nmf, T, x=q)
         plot_adjustments(ax)
         figs[f"iterative_{i+1}"] = fig
         axes.append(ax)
@@ -128,9 +129,10 @@ def make_summary_plot(function="XRD"):
     from constrainednmf.companion.plotting import two_column_width
 
     if function.upper() == "XRD":
-        T, X = get_data()
+        T, X, q = get_data()
     elif function.upper() == "PDF":
         T, X = get_pdf_data()
+        q = None
     fig, axes = plt.subplots(
         3, 2, figsize=(two_column_width, two_column_width), tight_layout=True
     )
@@ -140,8 +142,9 @@ def make_summary_plot(function="XRD"):
         nmfs.append(
             iterative_nmf(NMF, X, n_components=n, beta=2, tol=1e-8, max_iter=1000)[-1]
         )
+        np.savetxt(f"./example_output/molten_salts_{n}_components.txt", nmfs[-1].H.detach().numpy())
     for i, nmf in enumerate(nmfs):
-        decomp_plot(nmf, T, axes=axes[i, :])
+        decomp_plot(nmf, T, axes=axes[i, :], x=q)
         plot_adjustments(axes[i, :])
 
     return fig
@@ -152,7 +155,7 @@ def make_residual(function="XRD"):
     from constrainednmf.companion.plotting import residual_plot
 
     if function.upper() == "XRD":
-        T, X = get_data()
+        T, X, _ = get_data()
     elif function.upper() == "PDF":
         T, X = get_pdf_data()
 

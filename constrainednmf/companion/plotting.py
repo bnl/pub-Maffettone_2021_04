@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import numpy as np
 from matplotlib.gridspec import GridSpec
 import matplotlib as mpl
 import torch
@@ -179,17 +180,24 @@ def toy_plot(model, x, Y, weights, components):
     return fig
 
 
-def decomp_plot(nmf, T, axes=None):
+def decomp_plot(nmf, T, axes=None, x=None):
     H = nmf.H.data.numpy()
     W = nmf.W.data.numpy()
     if axes is None:
         fig, axes = plt.subplots(2, 1, figsize=(one_column_width, 4), tight_layout=True)
     ax = axes[0]
+    if x is None:
+        x = np.arange(0, H.shape[1])
+        xlim = (0, H.shape[1])
+        xlabel = "Component feature index"
+    else:
+        xlim = (np.min(x), np.max(x))
+        xlabel = r"Q [$\AA^{-1}$]"
     for i in range(H.shape[0]):
-        ax.plot(H[i, :] / H[i, :].max() + i)
+        ax.plot(x, H[i, :] / H[i, :].max() + i)
     # ax.set_title("Stacked Normalized Components")
-    ax.set_xlim(0, H.shape[1])
-    ax.set_xlabel("Component feature index")
+    ax.set_xlim(*xlim)
+    ax.set_xlabel(xlabel)
     ax.set_ylabel("Normalized intensity")
 
     ax = axes[1]
