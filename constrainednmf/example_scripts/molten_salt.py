@@ -94,6 +94,7 @@ def make_plots(n_components=4, function="XRD"):
     figs["elbow"] = fig
     axes.append(ax)
     nmf = standard_nmf(X, n_components)
+    np.savetxt(f"./example_output/molten_salts_canonical_{n_components}_components.txt", nmf.H.detach().numpy())
     fig, ax = decomp_plot(nmf, T, x=q)
     plot_adjustments(ax)
     figs["conventional"] = fig
