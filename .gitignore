@@ -51,6 +51,6 @@ Thumbs.db
 /local_scripts/
 /notebooks
 /data
-constrainednmf/example_scripts/example_output/
+constrainednmf/example_scripts/example_output*/
 */tmp/
 *.egg-info/

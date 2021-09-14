@@ -19,7 +19,7 @@ def plot_datasets():
     waterfall_plot(Q, X, alt_ordinate=T, ax=axes[0], sampling=2, offset=0.3)
     axes[0].set_xlim(0, 25)
 
-    T, X = get_salt_data()
+    T, X, _ = get_salt_data()
     X = (X - X.min(dim=1).values[:, None]) / (
         X.max(dim=1).values - X.min(dim=1).values
     )[:, None]

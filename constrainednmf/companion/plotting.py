@@ -33,7 +33,7 @@ def subplot_label(ax, text):
 
 
 def plot_dataset(x, Y):
-    import numpy as np
+    mpl.rcParams.update({"font.size": fontsize, "lines.linewidth": linewidth})
 
     fig, ax = plt.subplots(
         figsize=(one_column_width, one_column_width * 0.75), tight_layout=True
@@ -87,10 +87,10 @@ def waterfall_plot(
 
 
 def toy_plot(model, x, Y, weights, components):
-    fontsize = 6
+    #fontsize = 6
     mpl.rcParams.update({"font.size": fontsize, "lines.linewidth": linewidth})
     fig = plt.figure(
-        tight_layout=False, figsize=(one_column_width, one_column_width / 3 * 2)
+        tight_layout=False, figsize=(two_column_width, two_column_width / 3 * 2)
     )  # Not using tight_layout permenantly. Applying prior to legend.
     gs = GridSpec(2, 6)
     recon_axes = [fig.add_subplot(gs[0, i * 2 : (i + 1) * 2]) for i in range(3)]
@@ -111,11 +111,13 @@ def toy_plot(model, x, Y, weights, components):
     ax = recon_axes[2]
     ax.plot(x, recon[-1, :].data.numpy(), color="tab:red", label="Learned")
     ax.plot(x, Y[-1, :], color="black", linestyle="--", label="True")
-    recon_axes[-1].legend(loc="upper right", fontsize="small", framealpha=0.4)
+    recon_axes[-1].legend(loc="upper right",
+                          #fontsize="small",
+                          framealpha=0.4)
     for text, ax in zip(["(a)", "(b)", "(c)"], recon_axes):
         # ax.legend(loc="center left", fontsize="small", framealpha=0.25)
         ax.text(
-            0.1,
+            0.05,
             0.98,
             text,
             horizontalalignment="center",
@@ -165,7 +167,7 @@ def toy_plot(model, x, Y, weights, components):
         bbox_to_anchor=(-0.2, -0.2),
         loc="upper center",
         ncol=W.shape[1],
-        fontsize="small",
+        #fontsize="small",
         framealpha=0.25,
     )
     ax.text(
@@ -181,6 +183,7 @@ def toy_plot(model, x, Y, weights, components):
 
 
 def decomp_plot(nmf, T, axes=None, x=None):
+    mpl.rcParams.update({"font.size": fontsize, "lines.linewidth": linewidth})
     H = nmf.H.data.numpy()
     W = nmf.W.data.numpy()
     if axes is None:
@@ -214,6 +217,7 @@ def decomp_plot(nmf, T, axes=None, x=None):
 
 def residual_plot(nmf, X, idx=None, ax=None):
     """Plot X, reconstruction, and residual of an index"""
+    mpl.rcParams.update({"font.size": fontsize, "lines.linewidth": linewidth})
 
     if ax is None:
         fig, ax = plt.subplots(
@@ -248,6 +252,7 @@ def sweep_components(X, n_max=None, n_min=2):
     fig
     """
     from constrainednmf.nmf.models import NMF
+    mpl.rcParams.update({"font.size": fontsize, "lines.linewidth": linewidth})
 
     if n_max is None:
         n_max = X.shape[0]
