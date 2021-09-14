@@ -1,0 +1,12 @@
+Figure 1: [example_dataset_weights.pdf, example_dataset_components.pdf]
+Figure 2: experimental_datasets.pdf
+Figure 3: standard_weights.pdf
+Figure 4: constrained_weights.pdf
+Figure 5: standard_components.pdf
+Figure 6: constrained_components.pdf
+Figure 7: BaTiO_1.pdf
+Figure 8: BaTiO_4.pdf
+Figure 9: molten_salts_xrd_4_elbow.pdf
+Figure 10: molten_salts_xrd_4_conventional.pdf
+Figure 11: molten_salts_xrd_summary.pdf
+Figure 12: refinement_data.pdf
