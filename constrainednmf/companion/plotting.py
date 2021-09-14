@@ -111,7 +111,8 @@ def toy_plot(model, x, Y, weights, components):
     ax = recon_axes[2]
     ax.plot(x, recon[-1, :].data.numpy(), color="tab:red", label="Learned")
     ax.plot(x, Y[-1, :], color="black", linestyle="--", label="True")
-    recon_axes[-1].legend(loc="upper right",
+    recon_axes[-1].legend(loc="upper left",
+                          bbox_to_anchor=(-0.005, 0.9),
                           #fontsize="small",
                           framealpha=0.4)
     for text, ax in zip(["(a)", "(b)", "(c)"], recon_axes):
@@ -275,5 +276,6 @@ def sweep_components(X, n_max=None, n_min=2):
     axes[0].set_ylabel("MSE Loss", color="C0")
     axes[1].plot(x, kl_losses, color="C1", label="KL Loss")
     axes[1].set_ylabel("KL Loss", color="C1")
+    axes[1].ticklabel_format(style='sci', scilimits=(-2, 2))
     ax.set_xlabel("Number of components")
     return fig, axes
