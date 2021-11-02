@@ -5,6 +5,8 @@ pub-Maffettone_2021_04: Constrained NMF
 Python replication of `this paper <https://arxiv.org/abs/2104.00864>`_.
 This work uses PyTorch for constrained non-negative matrix factorization.
 
+Continued open-source development of this resource beyond the publication is available at `NSLS-II/constrained-matrix-factorization <https://github.com/NSLS-II/constrained-matrix-factorization>`_.
+
 
 Abstract
 ========
